@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewData["Title"] = "Order_confirmation";
+    Layout = "user_master";
+}
+
+<h1>Order_confirmation</h1>
+
+<div class="container mt-3">
+
+    <img id="image" src="~/assets/img/@ViewBag.image_url" /></img>
+    <div id="product_name">Product : @ViewBag.product_name</div>
+    <div id="description"> Description : @ViewBag.description</div>
+    <div id="price">Price : @ViewBag.price</div>
+    <div id="username">Username : @ViewBag.username</div>
+    <div> quantity : </div><input id="quans" type="number" value="1" onkeyup="cal_amount()" />
+    <div> mobile no : </div><input id="conno" type="number" value="@ViewBag.contact" />
+    <div> Address : </div><input id="address" type="text" value="@ViewBag.shipping_address" />
+
+    <div id="total_amount"></div>
+
+    <button onclick="buynow()" style="margin-top: 10px; font-size: 10px; background-color: #4CAF50; color: white; border: none; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; border-radius: 10px;">Buy Now</button>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+
+    $(document).ready(function () {
+        console.log("@ViewBag.error1");
+        console.log("@ViewBag.error2");
+        console.log(@ViewBag.email);
+    });
+
+    function cal_amount(){
+        var quan = $("#quans").val();
+        var price = @ViewBag.price;
+        console.log(quan * price, quan, price);
+        $("#total_amount").text("Your payable amount is = "+(quan*price));
+    }
+    
+    function buynow() { 
+        var amount = @ViewBag.price * $("#quans").val();
+        console.log(amount);
+        make_pay(amount);
+    }
+
+    function make_pay(am) {
+        var pay_amount = am * 100;
+        var options = {
+            "key": "rzp_test_axMJfDywjcD8VS",
+            "amount": pay_amount,
+            "currency": "INR",
+            "name": "Acme Corp",
+            "description": "Test Transaction",
+            "image": "https://example.com/your_logo",
+            "handler": function (response) {
+                console.log("payment succes of"+am);
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+
+        var rzp1 = new Razorpay(options);
+
+        rzp1.on('payment.failed', function (response) {
+            alert("Payment failed. Please try again later.");
+        });
+
+
+        rzp1.open();
+    }
+
+</script>

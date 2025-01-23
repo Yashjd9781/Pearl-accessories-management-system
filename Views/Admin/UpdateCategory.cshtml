@@ -1,0 +1,75 @@
+﻿@model int // Assuming you're passing the category ID as model
+
+@{
+    ViewData["Title"] = "Update Category";
+    int categoryId = (int)ViewData["id"];
+    Layout = "Admin_master";
+}
+
+<input type="hidden" id="categoryId" value="@Model" />
+<div style="margin: auto; width: 50%; margin-top:10%" >
+    <form id="categoryForm" style="width:100%;">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Category Name</label>
+
+            <input type="text" id="categoryName" class="form-control" style="width: 100%;">
+            <div style="color: red;" class="validation-message" id="valid_name"></div>
+        </div><br>
+        <button type="submit" onclick="updateCategory()"  class="btn btn-primary">update</button>
+       
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        $.ajax({
+            url: '/Category/CategoryFetchName',
+            type: 'POST',
+            data: { id: @categoryId},
+            success: function (response) {
+                $("#categoryName").val(response);
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    });
+
+    function updateCategory() {
+        var name = $("#categoryName").val();
+
+
+        var category_name = document.querySelector("#categoryName");
+        var name = category_name.value.trim();
+
+        var namePattern = /^[a-z\s]*$/;
+
+
+        if (name.trim() === "") {
+            $("#valid_name").text("Please fill category name");
+            console.log("category Name is empty");
+            return;
+        } else if (!namePattern.test(name)) {
+            $("#valid_name").text("Please enter a valid category name (only alphabets and spaces allowed).");
+            console.log("Invalid name format");
+            return;
+        } else {
+            $("#valid_name").text(""); // Clear error message if valid
+        }
+
+
+        $.ajax({
+            url: '/Category/CategoryUpdate',
+            type: 'POST',
+            data: { id: @categoryId, name: name },
+            success: function (response) {
+                window.location.href = '/Category/Categoryvv';
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
+</script>

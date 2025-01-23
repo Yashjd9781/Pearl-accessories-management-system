@@ -1,0 +1,249 @@
+﻿@{
+
+    ViewData["Title"] = "Email verification";
+    
+
+}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>OTP Verification</title>
+        <!-- Add any necessary CSS stylesheets here -->
+        <style>
+        .container1 {
+            text-align: center;
+            margin: auto;
+            margin-top:10%;
+            max-width: 400px; /* Adjust the max-width as needed */
+            padding: 20px;
+            /*border: 1px solid #ccc;
+                    border-radius: 8px;*/
+            margin-bottom:5%;
+        }
+
+            .container1 img {
+                width: 50%
+                max-width: 150px; /* Adjust the max-width as needed */
+                height: auto;
+                margin-bottom: 20px;
+            }
+
+            .container1 h1 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+
+            .container1 p {
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+
+            .container1 input[type="email"],
+            .container1 input[type="text"],
+            .container1 input[type="password"] {
+                width: calc(100% - 20px);
+                padding: 10px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            .container1 button {
+                padding: 10px 20px;
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .l1{
+                font-size:20px;           }
+                .container button:hover {
+                    background-color: #0056b3;
+                }
+            h2{
+                font-size:30px;
+                padding:20px 20px;
+            }
+            .container1 p#valid_email,
+            .container1 p#valid_otp,
+            .container1 p#valid_password {
+                color: red;
+            }
+
+
+</style >
+    </head>
+    <body>
+<div id="f1">
+    <div class="container1" > 
+         <img src="~/gmail.png" width="250px" height="200px" alt="alt" />
+        <h1 >email Verification</h1>
+        <p >Enter the Email Address sent to your OTP </p>
+        <input type="email" class="input" id="email" name="email" placeholder="Email Address">
+        <button  class="button1" name="send_otp" onclick="verify_email()" type="submit">send otp</button>
+        <p  class="p" style="color:red"  id="valid_email"></p>
+    </div>
+</div>
+
+<div id="fotp">
+  
+    <div class="container1" >
+        <img src="~/pin-code.png" width="40%" height="40%" alt="alt" />
+        <h1>OTP Verification</h1>
+        <p>Enter the OTP sent to your Email Address</p>
+        <input  type="text" id="otp" name="otp" maxlength="6" pattern="[0-9]{6}" placeholder="Enter OTP" required>
+        <button type="button" onclick="f2()">Next</button>
+        <p style="color:red" id="valid_otp"></p>
+
+    </div>
+</div>
+    <div id="f2">
+        <div class="container1">
+            <h2>Password Change</h2>
+            <div class="form-group">
+                <label class="l1" for="newPassword">New Password:</label>
+                <input type="password" id="pass" name="newPassword" required>
+            </div>
+            <div class="form-group">
+                <label class="l1"  for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="com_pass" name="confirmPassword" required>
+            </div>
+            <div class="form-group">
+                <p style="color:red" id="valid_password"></p>
+            </div>
+            <button class="btn" onclick="register()">Submit</button>
+        </div>
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        // Declare a global variable to store the email
+
+
+     
+
+        var email;
+
+        $(document).ready(function () {
+            $("#f1").show();
+            $("#f2").hide();
+            $("#fotp").hide();
+        });
+
+        function f2() {
+            var enterd_otp = $.trim($("#otp").val());
+
+            if (enterd_otp == "") {
+                $("#valid_otp").text("Please enter a valid 6-digit OTP code");
+                return;
+            }
+            $("#valid_otp").text("");
+
+            if (enterd_otp != otp) {
+                $("#valid_otp").text("Invalid OTP");
+                return;
+            } else {
+                $("#valid_otp").text("");
+                $("#fotp").hide();
+                $("#f2").show();
+            }
+        }
+
+        function verify_email() {
+            email = $('#email').val(); // Store the email globally
+            if (email == "") {
+                $("#valid_email").text("Please fill email");
+                return;
+            }
+            $.ajax({
+                url: '/app/checkEmail',
+                method: 'POST',
+                data: { email: email },
+                success: function (response) {
+                    if (response == "exists") {
+                        $('#valid_email').text('OTP is sending...');
+                        sendOTP(email);
+                    } else if (response == "notValid") {
+                        $("#valid_email").text('Please enter a valid email.');
+                    } else if (response == "send") {
+                        $("#valid_email").text('Email does not exist in the system.');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error fetching options: ' + status + ' - ' + error);
+                }
+            });
+        }
+
+        function sendOTP(email) {
+            $.ajax({
+                url: '/app/sendOtp',
+                type: 'POST',
+                data: { email: email },
+                success: function (response) {
+                    otp = response;
+                    $('#valid_email').text('OTP has been sent to email');
+                    $("#f1").hide();
+                    $("#fotp").show();
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error sending email:', error);
+                }
+            });
+        }
+
+        function register() {
+            var newPassword = $("#pass").val();
+            var confirmPassword = $("#com_pass").val();
+
+         
+
+
+            if (newPassword == "") {
+                $("#valid_password").text("please enter password");
+                return;
+            } else if (confirmPassword == ""){
+                $("#valid_password").text("please enter password");
+                return;
+            }
+            else if (!newPassword.match(/[a-z]/g)) {
+                $("#valid_password").text("Password must include small character");
+                return;
+            } else if (!newPassword.match(/[A-Z]/g)) {
+                $("#valid_password").text("Password must include Capital character");
+                return;
+            } else if (!newPassword.match(/[0-9]/g)) {
+                $("#valid_password").text("Password must include Number digits");
+                return;
+            } else if (newPassword.length <= 7) {
+                $("#valid_password").text("Password must be more than 6 latters");
+                return;
+            } 
+            else if (newPassword !== confirmPassword) {
+                $('#valid_password').text('Passwords does not match');
+                return;
+            }
+
+            // Send the new password and email to the server for registration
+            $.ajax({
+                url: '/app/forgotpassword',
+                method: 'POST',
+                data: { email: email, newPassword: newPassword }, // Include the email in the data
+                success: function (response) {
+                    console.log(response);
+                    alert("Password changed successfully!");
+                    window.location.href = "/app/RegisterView";
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error changing password: ' + status + ' - ' + error);
+                    alert("An error occurred while changing password. Please try again later.");
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Sujal Lakhani\\Downloads\\Project_pearl\\Project_pearl\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C4C656E9-15FF-405A-8E46-BF3D65AB6258}|Project_pearl.csproj|c:\\users\\sujal lakhani\\downloads\\project_pearl\\project_pearl\\views\\home\\order_confirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C4C656E9-15FF-405A-8E46-BF3D65AB6258}|Project_pearl.csproj|solutionrelative:views\\home\\order_confirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4C656E9-15FF-405A-8E46-BF3D65AB6258}|Project_pearl.csproj|c:\\users\\sujal lakhani\\downloads\\project_pearl\\project_pearl\\controllers\\description.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4C656E9-15FF-405A-8E46-BF3D65AB6258}|Project_pearl.csproj|solutionrelative:controllers\\description.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4C656E9-15FF-405A-8E46-BF3D65AB6258}|Project_pearl.csproj|c:\\users\\sujal lakhani\\downloads\\project_pearl\\project_pearl\\views\\home\\description.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C4C656E9-15FF-405A-8E46-BF3D65AB6258}|Project_pearl.csproj|solutionrelative:views\\home\\description.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4C656E9-15FF-405A-8E46-BF3D65AB6258}|Project_pearl.csproj|c:\\users\\sujal lakhani\\downloads\\project_pearl\\project_pearl\\controllers\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4C656E9-15FF-405A-8E46-BF3D65AB6258}|Project_pearl.csproj|solutionrelative:controllers\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4C656E9-15FF-405A-8E46-BF3D65AB6258}|Project_pearl.csproj|c:\\users\\sujal lakhani\\downloads\\project_pearl\\project_pearl\\controllers\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4C656E9-15FF-405A-8E46-BF3D65AB6258}|Project_pearl.csproj|solutionrelative:controllers\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4C656E9-15FF-405A-8E46-BF3D65AB6258}|Project_pearl.csproj|c:\\users\\sujal lakhani\\downloads\\project_pearl\\project_pearl\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4C656E9-15FF-405A-8E46-BF3D65AB6258}|Project_pearl.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4C656E9-15FF-405A-8E46-BF3D65AB6258}|Project_pearl.csproj|c:\\users\\sujal lakhani\\downloads\\project_pearl\\project_pearl\\controllers\\usercategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4C656E9-15FF-405A-8E46-BF3D65AB6258}|Project_pearl.csproj|solutionrelative:controllers\\usercategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4C656E9-15FF-405A-8E46-BF3D65AB6258}|Project_pearl.csproj|c:\\users\\sujal lakhani\\downloads\\project_pearl\\project_pearl\\views\\home\\contact_us.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C4C656E9-15FF-405A-8E46-BF3D65AB6258}|Project_pearl.csproj|solutionrelative:views\\home\\contact_us.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 321,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Description.cs",
+              "DocumentMoniker": "C:\\Users\\Sujal Lakhani\\Downloads\\Project_pearl\\Project_pearl\\Controllers\\Description.cs",
+              "RelativeDocumentMoniker": "Controllers\\Description.cs",
+              "ToolTip": "C:\\Users\\Sujal Lakhani\\Downloads\\Project_pearl\\Project_pearl\\Controllers\\Description.cs",
+              "RelativeToolTip": "Controllers\\Description.cs",
+              "ViewState": "AQIAAGgAAAAAAAAAAAAmwHEAAABUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-27T11:13:58.849Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Order.cs",
+              "DocumentMoniker": "C:\\Users\\Sujal Lakhani\\Downloads\\Project_pearl\\Project_pearl\\Controllers\\Order.cs",
+              "RelativeDocumentMoniker": "Controllers\\Order.cs",
+              "ToolTip": "C:\\Users\\Sujal Lakhani\\Downloads\\Project_pearl\\Project_pearl\\Controllers\\Order.cs",
+              "RelativeToolTip": "Controllers\\Order.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-02T05:42:56.46Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\Sujal Lakhani\\Downloads\\Project_pearl\\Project_pearl\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\Sujal Lakhani\\Downloads\\Project_pearl\\Project_pearl\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AQIAAE4AAACA/FBESUErwG0AAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-01T17:18:50.624Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserCategory.cs",
+              "DocumentMoniker": "C:\\Users\\Sujal Lakhani\\Downloads\\Project_pearl\\Project_pearl\\Controllers\\UserCategory.cs",
+              "RelativeDocumentMoniker": "Controllers\\UserCategory.cs",
+              "ToolTip": "C:\\Users\\Sujal Lakhani\\Downloads\\Project_pearl\\Project_pearl\\Controllers\\UserCategory.cs",
+              "RelativeToolTip": "Controllers\\UserCategory.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAQwBQAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-01T17:17:06.137Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Contact_us.cshtml",
+              "DocumentMoniker": "C:\\Users\\Sujal Lakhani\\Downloads\\Project_pearl\\Project_pearl\\Views\\Home\\Contact_us.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Contact_us.cshtml",
+              "ToolTip": "C:\\Users\\Sujal Lakhani\\Downloads\\Project_pearl\\Project_pearl\\Views\\Home\\Contact_us.cshtml",
+              "RelativeToolTip": "Views\\Home\\Contact_us.cshtml",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-01T17:16:52.418Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Description.cshtml",
+              "DocumentMoniker": "C:\\Users\\Sujal Lakhani\\Downloads\\Project_pearl\\Project_pearl\\Views\\Home\\Description.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Description.cshtml",
+              "ToolTip": "C:\\Users\\Sujal Lakhani\\Downloads\\Project_pearl\\Project_pearl\\Views\\Home\\Description.cshtml",
+              "RelativeToolTip": "Views\\Home\\Description.cshtml",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAABgAAAAKAQAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-01T17:13:55.897Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Category.cs",
+              "DocumentMoniker": "C:\\Users\\Sujal Lakhani\\Downloads\\Project_pearl\\Project_pearl\\Controllers\\Category.cs",
+              "RelativeDocumentMoniker": "Controllers\\Category.cs",
+              "ToolTip": "C:\\Users\\Sujal Lakhani\\Downloads\\Project_pearl\\Project_pearl\\Controllers\\Category.cs",
+              "RelativeToolTip": "Controllers\\Category.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-01T08:34:32.021Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Order_confirmation.cshtml",
+              "DocumentMoniker": "C:\\Users\\Sujal Lakhani\\Downloads\\Project_pearl\\Project_pearl\\Views\\Home\\Order_confirmation.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Order_confirmation.cshtml",
+              "ToolTip": "C:\\Users\\Sujal Lakhani\\Downloads\\Project_pearl\\Project_pearl\\Views\\Home\\Order_confirmation.cshtml",
+              "RelativeToolTip": "Views\\Home\\Order_confirmation.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADoAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-01T08:17:00.032Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

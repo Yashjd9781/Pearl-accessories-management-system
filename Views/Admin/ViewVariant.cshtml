@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Variants";
+    Layout = "Admin_master";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<h2>Variant Data</h2>
+
+<div class="card-body mt-4" style="margin-left:30%; width:50%">
+    <table id="dataTable" class="table table-bordered text-center" style="width:90%; margin: auto;margin-top:15%">
+        <thead>
+            <tr>
+                <th>Variant ID</th>
+                <th>Size</th>
+                <th>weight</th>
+                <th>price</th>
+                <th>Stock Quantity </th>
+                <th>Img </th>
+                <th colspan="2">Operation</th>
+            </tr>
+        </thead>
+        <tbody id="data">
+        </tbody>
+    </table>
+</div>
+
+<div id="data-container">
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        fetch_pro();
+    });
+
+    function fetch_pro() {
+        $.ajax({
+            url: '/Variant/VariantView',
+            type: 'POST',
+            success: function (response) {
+                $("#data").empty();
+                $("#data").html(response);
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
+
+
+
+    function deletevar(id) {
+        console.log(id);
+        $.ajax({
+            url: '/Variant/VariantDelete',
+            type: 'POST',
+            data: { id: id },
+            success: function (response) {
+                if (response == "success") {
+                    fetch_pro();
+                }
+                else {
+                    alert("error deleting");
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
+
+    function updatevar(id) {
+        window.location.href = `/Variant/VariantUpdateView/${id}`;
+    }
+
+
+
+</script>

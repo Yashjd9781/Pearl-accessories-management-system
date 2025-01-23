@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Fetch Data with AJAX";
+    Layout = "Admin_master";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<div class="card-body mt-4" style="margin-left:30%; width:50%">
+   
+    <table class="table table-bordered text-center" style="width:90%; margin: auto;margin-top:15%">
+        <thead>
+            <tr>
+                <th>Category ID</th>
+                <th>Category Name</th>
+                <th colspan="2">Operation</th>
+            </tr>
+        </thead>
+        <tbody id ="data">
+        </tbody>
+    </table>
+</div>
+
+
+<div id="data-container">
+</div>
+
+<script>
+    $(document).ready(function () {
+        fetch_cat();
+    });
+
+    function fetch_cat() {
+        $.ajax({
+            url: '@Url.Action("CategoryView", "Category")',
+            type: 'POST',
+            success: function (response) {
+                $("#data").empty();
+                $("#data").html(response);
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
+
+
+
+    function deletecat(id) {
+        console.log(id);
+        $.ajax({
+            url: '/Category/CategoryDelete',
+            type: 'POST',
+            data: { id: id },
+            success: function (response) {
+                if (response == "success") {
+                    fetch_cat();
+                }
+                else {
+                    alert("error deleting");
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
+
+    function updatecat(id) {
+        window.location.href = `/Category/CategoryUpdateView/${id}`;
+    }
+
+
+
+</script>

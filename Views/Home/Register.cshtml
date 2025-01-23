@@ -1,0 +1,243 @@
+﻿
+@{
+   
+    ViewData["Title"] = "Register";
+    Layout = "";
+}
+
+
+<!DOCTYPE html>
+<!-- Coding by CodingNepal | www.codingnepalweb.com-->
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Login and Registration Form in HTML & CSS | CodingLab</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Fontawesome CDN Link -->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+        /* Add your additional CSS styles here */
+    </style>
+</head>
+<body>
+	<div class="container">
+		<a href="c:\users\kmana\source\repos\project_pearl\views\home\register.cshtml"></a>
+        <input type="checkbox" id="flip">
+        <div class="cover">
+            <div class="front">
+                <img src="~/nec46.jpg" alt="Cover Image">
+                <div class="text">
+                    <span class="text-1">Every new friend is a <br> new adventure</span>
+                    <span class="text-2">Let's get connected</span>
+                </div>
+            </div>
+            <div class="back">
+                <!--<img class="backImg" src="images/backImg.jpg" alt="">-->
+                <div class="text">
+                    <span class="text-1">Complete miles of journey <br> with one step</span>
+                    <span class="text-2">Let's get started</span>
+                </div>
+            </div>
+        </div>
+        <div class="forms">
+            <div class="form-content">
+                <div class="login-form">
+                    <div class="title">Login</div>
+                    <div class="input-boxes">
+                        <div class="input-box">
+                            <i class="fas fa-envelope"></i>
+                            <input type="text" id="email"  placeholder="Enter your email">
+                            <div class="validation-message" style="color: red;" id="error_email"></div>
+                        </div>
+                        <div class="input-box">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="pass"  placeholder="Enter your password">
+                            <div class="validation-message" style="color: red;" id="error_password"></div>
+                        </div>
+                        <div class="text"><a href="/app/ForgotView">Forgot password?</a></div>
+                        <div class="button input-box">
+                            <button onclick="Login()" class="button-style">Login</button>
+                        </div>
+                        <a href="/app/Register" style="text-decoration:none;"><div class="text sign-up-text">Don't have an account? <label for="flip">Sign up now</label></div></a>
+                    </div>
+                </div>
+                <div class="signup-form">
+                    <div class="title">Signup</div>
+                    <div class="input-boxes">
+                        <div class="input-box">
+                            <input type="text" class="name" placeholder="Enter your name">
+                            <div style="color: red;" class="validation-message" id="valid_name"></div>
+                        </div>
+                        <div class="input-box">
+                            <input type="text" class="email" placeholder="Enter your email">
+                            <div class="validation-message" style="color: red;" id="valid_email"></div>
+                        </div>
+                        <div class="input-box">
+                            <input type="password" class="pass" placeholder="Enter your password">
+                            <div style="color: red;" class="validation-message" id="valid_password"></div>
+                        </div>
+                        <div class="button input-box">
+                           
+                            <input type="submit" class="button-style" onclick="register()" name="submit" value="Register">
+                        </div>
+                        <div class="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+
+    function register() {
+        console.log("Register function called");
+
+        // Get elements by class name and access their values
+        var nameInput = document.querySelector(".name"); // Using querySelector for single element
+        var emailInput = document.querySelector(".email"); // Using querySelector for single element
+        var passwordInput = document.querySelector(".pass"); // Using querySelector for single element
+
+        // Retrieve values from the input elements
+        var name = nameInput.value.trim();
+        var email = emailInput.value.trim();
+        var password = passwordInput.value.trim();
+
+        var namePattern = /^[a-zA-Z\s]*$/;
+
+           if (name.trim() === "") {
+                $("#valid_name").text("Please fill name");
+                console.log("Name is empty");
+                return;
+            } else if (!namePattern.test(name)) {
+                $("#valid_name").text("Please enter a valid name (only alphabets and spaces allowed).");
+                console.log("Invalid name format");
+                return;
+            } else {
+                $("#valid_name").text(""); // Clear error message if valid
+            }
+
+            if (email.trim() === "") {
+                $("#valid_email").text("Please fill email");
+                console.log("Email is empty");
+                return;
+            }
+          
+        else {
+                    $("#valid_email").text(""); // Clear error message if valid
+                }
+
+            if (password.trim() === "") { // Change pass to password here
+                $("#valid_password").text("Please enter password");
+                console.log("Password is empty");
+                return;
+            } else if (!password.match(/[a-z]/g)) {
+                $("#valid_password").text("Password must include small character");
+                console.log("Password missing small character");
+                return;
+            } else if (!password.match(/[A-Z]/g)) {
+                $("#valid_password").text("Password must include Capital character");
+                console.log("Password missing capital character");
+                return;
+            } else if (!password.match(/[0-9]/g)) {
+                $("#valid_password").text("Password must include Number digits");
+                console.log("Password missing number digit");
+                return;
+            } else if (password.length <= 6) {
+                $("#valid_password").text("Password must be more than 6 letters");
+                return;
+            } else {
+                $("#valid_password").text(""); // Clear error message if valid
+            }
+
+
+        $.ajax({
+            url: '/UserRegister/Register',
+            method: 'POST',
+            data: { username: name, password: password, email: email },
+            success: function (response) {
+
+                if (response == "success") {
+                    console.log("data inserted successfully");
+                    preventBack();
+                    window.location.href = "/app/LoginView";
+                }
+                else if (response == "not valid") {
+                    $("#valid_email").text("email is not ");
+                }
+                else {
+                    console.log("data not inserted");
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+                console.error('Error fetching options: ' + status + ' - ' + error);
+            }
+        });
+      
+
+    }
+
+    function preventBack() {
+        window.history.forward();
+    }
+
+    setTimeout("preventBack()", 0);
+
+    window.onunload = function () { null };
+
+
+
+
+    function Login() {
+        console.log("Login function called");
+        var email = $("#email").val();
+        var password = $("#pass").val();
+
+        $.ajax({
+            url: "/app/Login",
+            method: "post",
+            data: { email: email, password: password },
+            success: function (response) {
+                console.log(response);  
+                if (response == "not found email") {
+                    $("#error_email").text("Email not found");
+                }
+                else if (response == "empty email") {
+                    $("#error_email").text("Enter Email ");
+                }
+                else if (response == "empty password") {
+                    $("#error_password").text("Enter password ");
+                }
+                else if (response == "wrong password") {
+                    $("#error_password").text("Wrong password");
+                }
+                else if (response == "error") {
+                    $("#error").text("Error occurred while logging in");
+                }
+                else {
+                    if (response == "user") {
+                        preventBack();
+                        window.location.href = "/app/IndexView";
+                    }
+                    else if (response == "admin") {
+                        preventBack();
+                        window.location.href = "/admin/AdminView"; // Redirect to admin dashboard
+                    }
+                    else if (response == "staf") {
+                        preventBack();
+                        window.location.href = "/staff/AdminView"; // Redirect to admin dashboard
+                    }
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+</script>

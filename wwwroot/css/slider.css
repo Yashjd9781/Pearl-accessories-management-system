@@ -1,0 +1,10 @@
+﻿
+
+/* Style the carousel caption */
+.carousel-caption {
+    /*background-color: rgba(0, 0, 0, 0.5);*/
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+}
+

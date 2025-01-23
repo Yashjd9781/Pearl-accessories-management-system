@@ -1,0 +1,125 @@
+﻿@{
+    ViewData["Title"] = "ViewDescription";
+    Layout = "user_master";
+}
+
+
+<h1> Description Show</h1>
+
+<div class="container mt-3" style="display: flex; align-items: center; justify-content: center; background-color:aliceblue">
+
+    <img id="image" style="width:600px; height:550px; margin-right: 20px;" src="" alt="Product Image" />
+
+    <div style="flex-grow: 1;">
+      <div id="product_name" style="font-weight: bold; font-size: 55px; font-style: bold;"></div>
+        <span style="font-size : 10px;">
+            Product description :
+        </span>  <div id="description" style="margin-top: 10px; font-size: 30px;"></div>
+      
+              <div id="price" style="margin-top: 10px; font-size: 20px;"></div>
+        <div id="stock_quantity" style="margin-top: 10px; font-size: 20px;"></div>
+        <div id="weight" style="margin-top: 10px; font-size: 20px;"></div>
+        <select id="size" onchange="fetch_variant()"  style="margin-top: 10px;width:100px; height:50px;">
+            <!-- Options will be dynamically populated -->
+        </select>
+        <button onclick="wishlist()" style="margin-top: 10px; font-size: 10px; background-color: #4CAF50; color: white; border: none; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; border-radius: 10px;">Add to Wishlist</button>
+        <button onclick="add_to_cart()" style="margin-top: 10px; font-size: 10px; background-color: #008CBA; color: white; border: none; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; border-radius: 10px;">Add to Cart</button>
+        <button onclick="order_confirm()" style="margin-top: 10px; font-size: 10px; background-color: #f44336; color: white; border: none; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; border-radius: 10px;">Order Confirm</button>
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        console.log("Document is ready");
+        $.ajax({
+            url: '/UserDescription/VariantSize',
+            type: 'POST',
+            async: true,
+            data: { id: @ViewBag.Id },
+            success: function (response) {
+                $("#size").html(response);
+                $("#size").val($("#size option:first").val());
+                console.log($("#size").val());
+                fetch_variant(); // Fetch initial product details
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching sizes: ' + status + ' - ' + error);
+            }
+        });
+    });
+    function fetch_variant() {
+        var v = $("#size").val();
+        console.log(v);
+        // Fetch product details based on selected size
+        $.ajax({
+            url: '/UserDescription/UpdateDescription',
+            type: 'POST',
+            async: true,
+            data: { id: @ViewBag.Id, size: v },
+            success: function (response) {
+                console.log(response);
+                $('#image').attr("src", "/assets/img/" + response.image);
+                $('#product_name').text(response['product_name']);
+                $('#description').text(response['description']);
+                $("#status").text(response['status']);
+                $("#price").text(response['price']);
+                $("#stock_quantity").text(response['stock_quantity']);
+                $("#weight").text(response['weight']);
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching variant: ' + status + ' - ' + error);
+            }
+        });
+    }
+
+    function add_to_cart() {
+        var v = $("#size").val();
+        $.ajax({
+            url: '/UserDescription/Cart',
+            method: 'POST',
+            data: { add_to_cart: @ViewBag.Id},
+            success: function (response) {
+                console.log(response);
+                if (response.trim() === 'Success') {
+                    alert("Product added to the cart successfully.");
+                }
+                else if (response.trim() === 'already') {
+                    alert("Product already added in cart please choose others.");
+                }
+            }
+        });
+    }
+    function order_confirm() {
+        var v = $("#size").val();
+        console.log(v);
+        window.location.href = '/UserDescription/confirm_order_page/'+v;
+    }
+
+
+    function wishlist() {
+        var v = $("#size").val();
+        $.ajax({
+            url: 'UserDescription/Wishlist',
+            method: 'POST',
+            data: { wishlist: @ViewBag.Id},
+            success: function (response) {
+                console.log(response);
+                if (response.trim() === 'inserted') {
+                    alert("Product added to the wishlist successfully.");
+                }
+                else if (response.trim() === 'already') {
+                    alert("Product already added in wishlist please choose others.");
+                }
+
+            },
+            error: function (xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+    }
+
+
+
+</script>

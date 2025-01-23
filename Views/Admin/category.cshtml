@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "Category";
+    Layout = "Admin_master";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Add Category</title>
+
+    <!-- Add CSS styles -->
+    <style>
+    
+    </style>
+</head>
+<body>
+    <h2 style="text-align:center; margin-top:5%">Add Category</h2>
+    <div style="margin: auto; width: 50%;">
+        <form id="categoryForm" style="width:100%;">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Category Name</label>
+
+                <input type="text" id="category_name" class="form-control" style="width: 100%;" placeholder="Enter Category">
+                <div style="color: red;" class="validation-message" id="valid_name"></div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+         
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#categoryForm').submit(function (event) {
+                event.preventDefault();
+
+                var category_name = document.querySelector("#category_name");
+                var name = category_name.value.trim();
+
+                var namePattern = /^[a-z\s]*$/;
+
+
+                if (name.trim() === "") {
+                    $("#valid_name").text("Please fill category name");
+                    console.log("category Name is empty");
+                    return;
+                } else if (!namePattern.test(name)) {
+                    $("#valid_name").text("Please enter a valid category name (only alphabets and spaces allowed).");
+                    console.log("Invalid name format");
+                    return;
+                } else {
+                    $("#valid_name").text(""); // Clear error message if valid
+                }
+
+                $.ajax({
+                    url: '/Category/insertcat',
+                    type: 'POST',
+                    data: { category_name: name }, // Use the trimmed value
+                    success: function (result) {
+                        if (result == "exists") {
+                            alert('Category already exists!');
+                        }
+                        else {
+                            alert('Category added successfully!');
+                         //   window.location.href = '/Category/CategoryShow'';
+                        }
+                        // window.location.href = 'Index.html';
+                    },
+                    error: function (xhr, status, error) {
+                        var errorMessage = xhr.responseText;
+                        $('#categoryNameError').text(errorMessage);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

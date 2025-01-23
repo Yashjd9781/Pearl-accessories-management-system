@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel Animation</title>
+    <link rel="stylesheet" href="/css/slider.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    @{
+        ViewData["Title"] = "Home Page";
+        Layout = "user_master";
+    }
+
+
+        <style>
+            body{
+                margin-top:80px;
+            }
+            .about-us-container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+
+            .about-us {
+                text-align: justify;
+            }
+
+                .about-us h2 {
+                    color: #007bff;
+                    font-size: 24px;
+                    margin-top: 20px;
+                    margin-bottom: 10px;
+                }
+
+                .about-us p {
+                    margin-bottom: 20px;
+                    line-height: 1.5;
+                }
+
+            /* Styled footer styles */
+            .site-footer {
+                background-color: #222;
+                color: #fff;
+                padding: 50px 0;
+            }
+
+                .site-footer h3 {
+                    color: #fff;
+                }
+
+                .site-footer p {
+                    color: #ccc;
+                }
+
+            .social-icons {
+                list-style: none;
+                padding: 0;
+            }
+
+                .social-icons li {
+                    display: inline-block;
+                    margin-right: 10px;
+                }
+
+                .social-icons a {
+                    color: #fff;
+                    font-size: 24px;
+                }
+
+            .newsletter-form input[type="email"] {
+                width: 100%;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+
+            .newsletter-form button {
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                .newsletter-form button:hover {
+                    background-color: #0056b3;
+                }
+
+            .bottom-bar {
+                background-color: #111;
+                padding: 10px 0;
+            }
+
+            .footer-links {
+                list-style: none;
+                padding: 0;
+            }
+
+                .footer-links li {
+                    display: inline;
+                    margin-right: 10px;
+                }
+
+                .footer-links a {
+                    color: #777;
+                }
+
+            #aboutus,
+            #ftr {
+                transition: filter 0.5s ease-in-out;
+            }
+        </style>
+
+
+
+        <!-- //------------------------------------------------------navbar ------------------------------------------------------------------------------------ -->
+        <div id="mainpage" style="overflow-x: hidden;">
+            <div class="about-us-container" id="aboutus" style="max-width:1200px">
+                <section class="about-us"><br>
+                    <h3 style="color:black;">About Pearl Accessories </h3>
+                    <p style="color: #888;">
+                        Welcome to the world of photography, where every moment is captured, preserved, and cherished. At PiXLens, we are passionate about cameras, lenses, and all things photography, and we're excited to share that passion with you.
+                    </p>
+                    <video muted autoplay loop style="width: 100%;height:auto ; filter:grayscale(1)">
+                        <source src="~/assets/img/pearl.mp4" type="video/mp4">
+                    </video>
+
+                </section>
+            </div>
+        </div>
+
+
+        <script>
+            var aboutus = document.querySelector(".about-us");
+
+            gsap.from(aboutus.querySelectorAll("h1, h2, p"), {
+                opacity: 0,
+                y: 50,
+                stagger: 0.3,
+                duration: 1,
+                ease: "power4.out"
+            });
+
+            gsap.from(".about-us video", {
+                opacity: 0,
+                x: -50,
+                stagger: 0.2,
+                duration: 2,
+                ease: "power4.out",
+            });
+        </script>
+
+    </asp:Content>
+    <div>
+    @Html.Partial("ViewCategory")
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+   
+</body>
+</html>

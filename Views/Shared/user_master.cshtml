@@ -1,0 +1,309 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor accessor
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>header Page</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    
+
+
+    <link rel="stylesheet" href="~/css/header.css">
+
+    <link rel="stylesheet" href="~/css/home_page.css">
+
+    <style>
+        /* Add CSS to display the search form when it has the 'active' class */
+        /* Hide the search form by default */
+        .search-form {
+            display: none;
+            position: absolute;
+            top: calc(100% + 10px); /* Position the search form below the search icon */
+            left: 0;
+        }
+
+        /* Style for the search icon */
+        .search-icon {
+            cursor: pointer;
+        }
+
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: white;
+            width: auto;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+            top: calc(95% + 10px); /* Position dropdown menu below the icons */
+            position:absolute;
+            left:87%;
+        }
+
+
+
+            .dropdown-menu.active {
+                display: block;
+            }
+
+            .dropdown-menu a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-menu a:hover {
+                    background-color: #f1f1f1;
+                }
+
+       
+
+    </style>
+
+</head>
+<body>
+
+    <!-- Header Start -->
+
+    <header class="header">
+
+        <a href="#" class="logo">
+            <img src="~/logo2.png" alt="">
+        </a>
+
+        <nav class="navbar">
+            <a href="/app/IndexView">Home </a>
+            <a href="/app/About_us">About Us </a>
+            <a href="/app/Contact_us">Contact Us </a>
+            
+        </nav>
+
+        <div class="icons d-flex align-items-center">
+            <!-- Sign-in button -->
+  
+
+           <a href="" class="btn btn-lg me-6" id="signin" style="background-color: white; border: 1px solid black;">@accessor.HttpContext.Session.GetString("username") </a>
+         
+
+            <!-- Search button -->
+            <div class="fas fa-search me-6" id="search-btn"></div>
+
+            <!-- Shopping cart button -->
+            <div class="fas fa-shopping-cart me-6" id="cart-btn"></div>
+
+            <!-- Menu button -->
+            <div class="fas fa-bars" id="menu-btn"></div>
+        </div>
+
+
+        <!-- Add an ID to the search form for JavaScript -->
+        <div class="search-form" id="search-form">
+            <input type="search" id="search-box" placeholder="Search Here....">
+            <label for="search-box" class="fas fa-search"></label>
+        </div>
+
+        <!-- Dropdown menu -->
+        <div class="dropdown-menu" id="dropdown-menu">
+            <a href="/app/ProfileView" id="profile"  style="font-size:medium">
+                <i class="fas fa-user-circle"></i> Profile</a>
+
+            <a href="/app/LoginView" id="login" style="font-size:medium;"><i class="fas fa-sign-in-alt"></i> Login</a>
+
+            <a href="/app/logout" id="logout" onclick="preventBack()" style="font-size:medium;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+
+                    </div>
+                    <script>
+            function preventBack() {
+                window.history.forward();
+            }
+
+            setTimeout("preventBack()", 0);
+
+            window.onunload = function () { null };
+
+                    </script>
+    </header>
+
+    <div>
+        @RenderBody()
+    </div>
+
+
+    <!-- footer section starts -->
+    <footer class="footer_widgets footer_black " >
+        <div class="container">
+            <div class="footer_top">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-8">
+                        <div class="widgets_container contact_us">
+                            <h3>About Pearl Accessories</h3>
+                            <div class="footer_contact">
+                                <p>Address : 89, Sanskar Row House, Abrama Road, Mota Varachha, Surat</p>
+                                <p>Phone : <a href="tel:(+91)888888885555">(+91)9723835434 (+91)8866227947 (+91)9313098876 (+91)9924440381</a></p>
+                                <p>Email : pearlaccessories@gmail.com</p>
+                                <ul>
+                                    <ul class="social-icons">
+                                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-rss"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                    </ul>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-4 col-6">
+                        <div class="widgets_container widget_menu">
+                            <h3>Information</h3>
+                            <div class="footer_menu">
+                                <ul>
+                                    <li><a href="/app/About_us">About Us</a></li>
+                                    <li><a href="#">Blog</a></li>
+                                    <li><a href="/app/contact_us">Contact</a></li>
+                                    <li><a href="#">Services</a></li>
+                                    <li><a href="#">Collection</a></li>
+                                    <li><a href="#">Portfolio</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-5 col-6">
+                        <div class="widgets_container widget_menu">
+                            <h3>My Account</h3>
+                            <div class="footer_menu">
+                                <ul>
+                                    <li><a href="#">My Account</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="#">Wishlist</a></li>
+                                    <li><a href="#">Portfolio</a></li>
+                                    <li><a href="#">Checkout</a></li>
+                                    <li><a href="#">Frequently Questions</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-7">
+                        <div class="widgets_container product_widget">
+                            <h3>Top Rated Products</h3>
+                            <div class="simple_product">
+                                <div class="simple_product_items">
+                                    <div class="simple_product_thumb">
+                                        <a href="#"><img src="~/brace21.jpg" alt=""></a>
+                                    </div>
+                                    <div class="simple_product_content">
+                                        <div class="tag_cate">
+                                            <a href="#">Women,</a>
+                                            <a href="#">Earrings</a>
+                                        </div>
+                                        <div class="product_name">
+                                            <h3><a href="#">Bracelet</a></h3>
+                                        </div>
+                                        <div class="product_price">
+                                            <span class="old_price">Rs. 45612.54</span>
+                                            <span class="current_price">Rs. 41612.54</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="simple_product_items">
+                                    <div class="simple_product_thumb">
+                                        <a href="#"><img src="~/ring15.jpg" alt=""></a>
+                                    </div>
+                                    <div class="simple_product_content">
+                                        <div class="tag_cate">
+                                            <a href="#">Women,</a>
+                                            <a href="#">Earrings</a>
+                                        </div>
+                                        <div class="product_name">
+                                            <h3><a href="#">Ring</a></h3>
+                                        </div>
+                                        <div class="product_price">
+                                            <span class="old_price">Rs. 75612.54</span>
+                                            <span class="current_price">Rs. 71612.54</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer_bottom">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="copyright_area">
+                            <p>Copyright &copy; 2024 <a href="#">Pearl Accessories</a> All rights Reserved.</p>
+                            <img src="images/icon/papyel2.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- JavaScript to toggle the visibility of the search form and dropdown menu -->
+    <script>
+        // Function to toggle search form
+        document.getElementById('search-btn').addEventListener('click', function () {
+            var searchForm = document.getElementById('search-form');
+            searchForm.classList.toggle('active');
+        });
+
+        // Function to toggle dropdown menu
+        document.getElementById('menu-btn').addEventListener('click', function () {
+            var dropdownMenu = document.getElementById('dropdown-menu');
+            dropdownMenu.classList.toggle('active');
+        });
+        
+      
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        
+
+
+
+        $(document).ready(function () {
+            console.log("ready!");
+            $.ajax({
+                url: '/app/checkSession',
+                method: 'POST',
+                success: function (data) {
+                    console.log(data);
+                    if (data == "") {
+                        $("#profile").hide();
+                        $("#logout").hide();
+                        $("#signin").hide();
+                        $("cart-btn").hide();
+                    }
+                    else {
+                        $("#signin").show();
+                        $("#profile").show();
+                        $("#login").hide();
+                        $("cart-btn").show();
+                        $("#logout").show();
+                        
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+
+        });
+    </script>
+
+</body>
+</html>
